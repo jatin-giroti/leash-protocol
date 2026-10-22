@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: leash-api
+    runtime: python
+    plan: free
+    region: oregon
+    rootDir: backend
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips "*"
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: ENVIRONMENT
+        value: production
+      - key: MONGODB_URI
+        sync: false            # paste your MongoDB Atlas connection string in the Render dashboard
+      - key: MONGODB_DB
+        value: leash
+      - key: JWT_SECRET
+        generateValue: true    # Render generates a long random secret
+      - key: CORS_ORIGINS
+        sync: false            # your frontend origin, e.g. https://leash.vercel.app (comma separated)
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: COOKIE_SAMESITE
+        value: none

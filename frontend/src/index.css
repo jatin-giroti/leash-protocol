@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 231 27% 97%;          /* #F4F5F9 soft slate canvas */
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --primary: 243 100% 68%;            /* #635BFF */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 228 33% 95%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 228 33% 95%;
+    --muted-foreground: 215 19% 35%;
+    --border: 220 24% 91%;
+    --input: 220 20% 86%;
+    --ring: 243 100% 68%;
+    --destructive: 349 90% 60%;         /* #F43F5E */
+    --destructive-foreground: 0 0% 100%;
+    --success: 160 84% 39%;             /* #10B981 */
+    --warning: 38 92% 50%;              /* #F59E0B */
+  }
+  * { @apply border-border; }
+  html, body { @apply overflow-x-hidden; }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  button { @apply cursor-pointer; }
+  .tnum { font-variant-numeric: tabular-nums; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 1ms !important; animation-duration: 1ms !important; }
+  }
+}
+
+@layer components {
+  /* Slim horizontal scrollbar for the metric card row, as in the reference dashboard */
+  .hscroll { scrollbar-width: thin; scrollbar-color: hsl(228 14% 72%) hsl(228 30% 92%); }
+  .hscroll::-webkit-scrollbar { height: 8px; }
+  .hscroll::-webkit-scrollbar-track { background: hsl(228 30% 92%); border-radius: 9999px; }
+  .hscroll::-webkit-scrollbar-thumb { background: hsl(228 14% 72%); border-radius: 9999px; }
+}
