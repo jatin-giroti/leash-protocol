@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://leash-protocol.onrender.com/api/:path*"
+    },
+    {
+      "source": "/me",
+      "destination": "https://leash-protocol.onrender.com/api/me"
     }
   ]
 }
